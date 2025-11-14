@@ -6,4 +6,6 @@
 5. mkdir k8s catalog in the main directory of the repo
 6. install docker (sudo apt install docker.io)
 7. sudo apt install nginx
-8. 
+8. sudo usermod -aG docker $USER && newgrp docker
+9. install minikube
+10. 
