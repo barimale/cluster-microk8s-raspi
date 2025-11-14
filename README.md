@@ -8,4 +8,5 @@
 7. sudo apt install nginx
 8. sudo usermod -aG docker $USER && newgrp docker
 9. install minikube
-10. 
+10. sudo apt install kubectl
+11. 
