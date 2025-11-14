@@ -5,4 +5,5 @@
 4. copy repository from github
 5. mkdir k8s catalog in the main directory of the repo
 6. install docker (sudo apt install docker.io)
-7. 
+7. sudo apt install nginx
+8. 
