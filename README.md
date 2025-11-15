@@ -35,3 +35,4 @@ minikube service albergue-oporto --url
 
 minikube service list
 15. open firewall ports WIP
+sudo ufw allow 32111/tcp
