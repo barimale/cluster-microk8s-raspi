@@ -36,3 +36,4 @@ minikube service albergue-oporto --url
 minikube service list
 15. open firewall ports WIP
 sudo ufw allow 32111/tcp
+16. sudo systemctl enable minikube.service <- cale rozwiazanie z microsoft copilot.
