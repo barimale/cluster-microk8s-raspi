@@ -5,54 +5,19 @@ pool:
 
 steps:
 - script: |
-    npm install --force
-  displayName: 'npm install'
+    sudo apt install git-all
+  displayName: 'Install Git'
 - script: |
-    npm run build
+    sudo apt install docker.io
+    sudo usermod -aG docker $USER && newgrp docker
   displayName: 'npm build'
 - script: |
-    sudo docker buildx build . -t albergue-oporto
-  displayName: 'docker build'
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  displayName: 'Install nvm'
 - script: |
-    export DOCKER_USER=barimale
-    export DOCKER_PASSWORD=dckr_pat_051p96VctVj-Y1oYZ0d505TYtCU
-    docker login --username barimale --password dckr_pat_051p96VctVj-Y1oYZ0d505TYtCU
-    docker tag albergue-oporto barimale/albergue-oporto:latest
-    docker tag albergue-oporto barimale/albergue-oporto:$(Build.BuildNumber)
-    docker push barimale/albergue-oporto:latest
-  displayName: 'docker tag and push'
+    sudo apt-get install snap
+  displayName: 'Install snap'
 - script: |
-    sudo docker rm $(sudo docker stop $(sudo docker ps --filter "name=albergue-oporto" --format "{{.ID}}"))
+    sudo snap install microk8s --classic
   displayName: 'docker stop - continue on error'
-  continueOnError: true
-- script: |
-    sudo docker run --name albergue-oporto -d -p 3000:3000 albergue-oporto
-  displayName: 'docker run - continue on error'
-  continueOnError: true
-- script: |
-    kubectl create namespace albergue-oporto
-    kubectl config set-context --current --namespace=albergue-oporto
-  displayName: 'kubectl namespace albergue-oporto'
-  continueOnError: true
-- script: |
-    sudo kubectl apply -f ./k8s/deployment.yaml --validate=false
-  displayName: 'kubectl apply deployment'
-  continueOnError: true
-
-- script: |
-    sudo kubectl apply -f ./k8s/load-balancer.yaml --validate=false
-  displayName: 'kubectl apply load balancer'
-  continueOnError: true
-- script: |
-    microk8s kubectl create deployment microbot --image=barimale/albergue-oporto:latest
-    microk8s kubectl get all --all-namespaces
-  displayName: 'microk8s kubectl deployment'
-  continueOnError: true
-- script: |
-    microk8s kubectl scale deployment microbot --replicas=8
-  displayName: 'microk8s kubectl scale'
-  continueOnError: true
-- script: |
-    microk8s kubectl expose deployment microbot --type=NodePort --port=80 --name=microbot-service
-  displayName: 'microk8s kubectl expose'
   continueOnError: true
