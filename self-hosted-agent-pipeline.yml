@@ -6,17 +6,17 @@ pool:
 
 steps:
 - script: |
-    sudo apt install git-all
+    sudo apt install git-all -y
   displayName: 'Install Git'
 - script: |
-    sudo apt install docker.io
+    sudo apt install docker.io -y
     sudo usermod -aG docker $USER && newgrp docker
   displayName: 'npm build'
 - script: |
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
   displayName: 'Install nvm'
 - script: |
-    sudo apt-get install snap
+    sudo apt-get install snap -y
   displayName: 'Install snap'
 - script: |
     sudo snap install microk8s --classic
