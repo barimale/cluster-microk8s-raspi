@@ -19,5 +19,5 @@ steps:
   displayName: 'Install snap'
 - script: |
     sudo snap install microk8s --classic
-  displayName: 'docker stop - continue on error'
+  displayName: 'Install microk8s'
   continueOnError: true
