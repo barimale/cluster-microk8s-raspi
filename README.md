@@ -42,3 +42,5 @@ sudo ufw allow 32111/tcp
 https://sii.pl/blog/jak-skonfigurowac-lokalne-srodowisko-k8s-z-microk8s/
 
 https://github.com/oleg-nefedov/k3s-tutorial
+
+https://www.raspberrypi.com/tutorials/cluster-raspberry-pi-tutorial/
